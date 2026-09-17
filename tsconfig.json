@@ -11,5 +11,8 @@
         "types": ["node"]
     },
     "include": ["./src/**/*.ts"],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "exclude": ["node_modules"]
 }
