@@ -30,7 +30,7 @@ export class PokeAPI {
     }
 
     async fetchLocation(locationName: string): Promise<Location> {
-        const url = `${PokeAPI.baseURL}/location/${locationName}`;
+        const url = `${PokeAPI.baseURL}/location-area/${locationName}`;
         const cached = this.cache.get<Location>(url);
 
         if (cached) {
@@ -63,5 +63,10 @@ export type ShallowLocations = {
 
 export type Location = {
     name: string;
+    pokemon_encounters: {
+        pokemon: {
+            name: string;
+        };
+    }[];
 };
 
