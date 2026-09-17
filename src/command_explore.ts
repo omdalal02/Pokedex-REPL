@@ -4,6 +4,11 @@ export async function commandExplore(
     state: State,
     ...args: string[]
 ): Promise<void> {
+    if (args.length === 0) {
+        console.log("Please provide a location area.");
+        return;
+    }
+    
     const areaName = args[0];
 
     console.log(`Exploring ${areaName}...`);
