@@ -1,4 +1,4 @@
-import { createInterface, Interface } from "readline";
+import type { REPLServer } from "node:repl";
 import { commandExit } from "./command_exit.js";
 import { commandHelp } from "./command_help.js";
 import { commandMap } from "./command_map.js";
@@ -17,7 +17,7 @@ export type CLICommand = {
 };
 
 export type State = {
-    readline: Interface;
+    repl?: REPLServer;
     commands: Record <string, CLICommand>;
     pokeapi: PokeAPI;
     nextLocationsURL: string | null;
@@ -26,14 +26,7 @@ export type State = {
 };
 
 export function initState(): State {
-    const readline = createInterface({
-        input: process.stdin,
-        output: process.stdout,
-        prompt: "Pokedex >",
-    });
-
     const state: State = {
-        readline,
         commands: {},
         pokeapi: new PokeAPI(),
         nextLocationsURL: null,
